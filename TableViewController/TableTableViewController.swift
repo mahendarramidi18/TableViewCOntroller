@@ -11,24 +11,31 @@ import UIKit
 class TableTableViewController: UITableViewController {
     
     var titleArray = ["Game of Trones", "Criminal Minds", "Suites", "Narcos", "Black List"]
+    let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        if let items = defaults.array(forKey: "TitleList") as? [String] {
+            titleArray = items
+        }
     }
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return titleArray.count
     }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "titles", for: indexPath)
         cell.textLabel?.text = titleArray[indexPath.row]
         return cell
     }
+    
     //MARK: - Table view delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        // print(titleArray[indexPath.row])
@@ -39,6 +46,7 @@ class TableTableViewController: UITableViewController {
         }
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
     //MARK: Creating the action for BarButtonItem
     @IBAction func barButtonPressed(_ sender: UIBarButtonItem) {
         var textField = UITextField()
@@ -46,6 +54,7 @@ class TableTableViewController: UITableViewController {
         let action = UIAlertAction(title: "Add Title", style: .default) { (action) in
             //
             self.titleArray.append(textField.text!)
+            self.defaults.set(self.titleArray, forKey: "TitleList")
             self.tableView.reloadData()
         }
         alert.addTextField { (alertTextField) in
