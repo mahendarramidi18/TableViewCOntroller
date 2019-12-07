@@ -30,7 +30,14 @@
                             <outlet property="delegate" destination="miH-QQ-apL" id="jCa-6E-dZD"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Titles" id="XO8-fJ-yDH"/>
+                    <navigationItem key="navigationItem" title="Titles" id="XO8-fJ-yDH">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="tHT-BZ-f2S">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="barButtonPressed:" destination="miH-QQ-apL" id="JTl-Ga-HSA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tgw-8I-04D" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -48,5 +48,22 @@ class TableTableViewController: UITableViewController {
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
-
+    
+    //MARK: Creating the action for BarButtonItem
+    @IBAction func barButtonPressed(_ sender: UIBarButtonItem) {
+        var textField = UITextField()
+        let alert = UIAlertController(title: "Add new title", message: "", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Add Title", style: .default) { (action) in
+            //
+            self.titleArray.append(textField.text!)
+            self.tableView.reloadData()
+        }
+        alert.addTextField { (alertTextField) in
+            alertTextField.placeholder = "Add new title"
+            textField = alertTextField
+        }
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+    }
+    
 }
