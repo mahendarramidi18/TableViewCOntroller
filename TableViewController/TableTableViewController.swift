@@ -35,5 +35,18 @@ class TableTableViewController: UITableViewController {
         cell.textLabel?.text = titleArray[indexPath.row]
         return cell
     }
+    
+    //MARK: - Table view delegate
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       // print(titleArray[indexPath.row])
+        if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark {
+            tableView.cellForRow(at: indexPath)?.accessoryType = .none
+        }else{
+            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+        }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 
 }
